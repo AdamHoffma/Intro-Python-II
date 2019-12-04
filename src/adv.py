@@ -5,7 +5,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -50,7 +50,27 @@ while True:
     print(player.location.description)
     print("Enter a direction of travel: n for North, s for South, e for East, and w for West. Press q to quit the game")
 # * Waits for user input and decides what to do.
-#
+    x = input()
+    if(x == 'n'):
+        xvalue = player.location.n_to
+    elif(x == 's'):
+        xvalue = player.location.s_to
+    elif(x == 'e'):
+        xvalue = player.location.e_to
+    elif(x == 'w'):
+        xvalue = player.location.w_to
+    elif(x == 'q'):
+        print("Goodbye")
+        break
+    else:
+        print("Invalid selection")
+        continue
+    if(xvalue != None):
+        player.location = xvalue
+    else:
+        print("Cannot move in that direction")
+        continue
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
